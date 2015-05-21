@@ -1,5 +1,10 @@
 package com.tests.work;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
@@ -39,11 +44,33 @@ public class EditMyAccountTest {
 	private String companyCity;
 	private String companyPostCode;
 	private String companyCityState;
+	
 
 	@Before
 	public void setUp(){
-		userName = "niny2391@yahoo.com";
-		userPass = "testtest";
+		
+		Properties prop = new Properties();
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream("CreateUser.properties");
+			prop.load(input);
+
+			userName = prop.getProperty("userEmail");
+			userPass = prop.getProperty("userPassword");
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		
 		firstName = FieldGenerators.generateRandomString(9, Mode.ALPHA);
 		lastName = FieldGenerators.generateRandomString(7, Mode.ALPHA);
