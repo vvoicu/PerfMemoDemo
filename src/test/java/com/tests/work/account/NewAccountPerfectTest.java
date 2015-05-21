@@ -62,6 +62,11 @@ public class NewAccountPerfectTest {
 		newAccountPerfectSteps.confirmPassword(userPassword);
 		newAccountPerfectSteps.clickCreateAccountFreeButton();
 		newAccountPerfectSteps.verifyContactInformation(userEmail);
+		
+		System.out.println("------------------ DATA ------------------------");
+		System.out.println("UserName: " + userEmail);
+		System.out.println("UserPass: " + userPassword);
+		System.out.println("------------------------------------------------");
 	}
 	
 	@After
@@ -70,7 +75,7 @@ public class NewAccountPerfectTest {
 		OutputStream output = null;
 	 
 		try {
-			output = new FileOutputStream("CreateUser.properties");
+			output = new FileOutputStream(Constants.RESOURCES_PATH + "CreateUser.properties");
 			prop.setProperty("userEmail", userEmail);
 			prop.setProperty("userPassword", userPassword);
 			prop.store(output, null);

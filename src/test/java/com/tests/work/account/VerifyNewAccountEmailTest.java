@@ -43,7 +43,7 @@ public class VerifyNewAccountEmailTest {
 
 		try {
 
-			input = new FileInputStream("CreateUser.properties");
+			input = new FileInputStream(Constants.RESOURCES_PATH + "CreateUser.properties");
 			prop.load(input);
 
 			accountEmail = prop.getProperty("userEmail");

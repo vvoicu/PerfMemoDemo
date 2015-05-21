@@ -54,7 +54,7 @@ public class EditMyAccountTest {
 
 		try {
 
-			input = new FileInputStream("CreateUser.properties");
+			input = new FileInputStream(Constants.RESOURCES_PATH + "CreateUser.properties");
 			prop.load(input);
 
 			userName = prop.getProperty("userEmail");
@@ -85,6 +85,10 @@ public class EditMyAccountTest {
 
 	@Test
 	public void editMyAccountTest() throws InterruptedException {
+		System.out.println("------------------ DATA ------------------------");
+		System.out.println("UserName:" + userName);
+		System.out.println("UserPass:" + userPass);
+		System.out.println("------------------------------------------------");
 		myAccountSteps.isHomePage();
 		myAccountSteps.clickTheLoginLink();
 		myAccountSteps.enterYourCredentials(userName, userPass);
@@ -93,7 +97,6 @@ public class EditMyAccountTest {
 		myAccountSteps.editAccountInformation(firstName, lastName);
 		myAccountSteps.saveTheEditedInformation();
 		myAccountSteps.clickAddressBookLink();
-		myAccountSteps.clickChangeLink();
 		myAccountSteps.editAddressBookInformation(companyName, companyPhone, companyStreet, companyCity, companyPostCode);
 		myAccountSteps.selectAState(companyCityState);
 		myAccountSteps.saveTheEditedInformation();
