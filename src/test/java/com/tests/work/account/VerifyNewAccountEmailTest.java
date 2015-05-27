@@ -74,7 +74,7 @@ public class VerifyNewAccountEmailTest {
 		emailClientSteps.verifyEmail(email, userPassword);
 		
 		//to make it fail
-//		emailClientSteps.verifyEmail(email, userPassword+userPassword);
+		emailClientSteps.verifyEmail(email, userPassword+userPassword);
 	}
 
 }
